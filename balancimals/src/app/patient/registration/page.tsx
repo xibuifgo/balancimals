@@ -1,5 +1,4 @@
 import styles from '../Patient.module.scss';
-import Image from 'next/image';
 
 export default function PatientSU() {
     return(
