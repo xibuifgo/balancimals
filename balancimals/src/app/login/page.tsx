@@ -1,12 +1,20 @@
+'use client';
+import { useRouter } from 'next/navigation';
 import Image from "next/image";
-import styles from './Tlogin.module.scss';
+import styles from './Tlogin.module.scss'; 
 import Prev from '../../../public/game_prev.png';
 import Dude from '../../../public/physio_icon.png';
 import Graph from '../../../public/stocks.png';
 import Report from '../../../public/report.png';
 import Title from '../../../public/title.png';
-
 export default function TLogIn() {
+  const router = useRouter();
+
+  const handleLogin = () => {
+    // Add your login logic here if needed
+    router.push('/physio');
+  };
+
   return (
     <div>
         <div className={styles.LogIn}>
@@ -17,7 +25,7 @@ export default function TLogIn() {
                 <h3>Login to access physiotherapist portal</h3>
                 <input type="text" id="username" placeholder="Enter Username" />
                 <input type="password" id="password" placeholder="Enter Password" />
-                <button className={styles.LIBtn}><p>Login</p></button>
+                <button className={styles.LIBtn} onClick={handleLogin}><p>Login</p></button>
             </div>
             <div className={styles.ImgBorder}>
                 <Image 
@@ -88,7 +96,7 @@ export default function TLogIn() {
                 </div>
                 <div className={styles.Feedback}>
                     <div className={styles.Text}>
-                        “My daughter used to resist therapy, but she looks forward to the balance game every week. She&#39;s steadier and more confident now.”
+                        “My daughter used to resist therapy, but she looks forward to the balance game every week. She's steadier and more confident now.”
                     </div>
                     <div className={styles.User}>
                         <div className={styles.UserImg}></div>
@@ -100,7 +108,7 @@ export default function TLogIn() {
                 </div>
                 <div className={styles.Feedback}>
                     <div className={styles.Text}>
-                        “Balancimals helped me track my progress in real-time. It&#39;s encouraging to see small wins each session.”
+                        “Balancimals helped me track my progress in real-time. It’s encouraging to see small wins each session.”
                     </div>
                     <div className={styles.User}>
                         <div className={styles.UserImg}></div>

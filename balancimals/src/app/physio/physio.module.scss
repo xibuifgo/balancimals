@@ -1,0 +1,370 @@
+.PageWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.DashboardContainer {
+  flex: 1 0 auto;
+  padding: 0;
+  background: #fff;
+  border-radius: 20px;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+.ContentNarrow {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.HeaderBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2d2a5a;
+  padding: 0.5rem 2rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.HeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.HeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.HeaderUser {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #fff;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+.SignOut {
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProfilePic {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.SettingsIcon {
+  margin-left: 8px;
+}
+
+.HeaderTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #111;
+  text-align: left;
+  margin-top: 2rem;
+}
+
+.HeaderSubtitle {
+  font-size: 1.5rem;
+  color: #555;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.FilterRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.FilterSelect {
+  padding: 0.4rem 1.2rem 0.4rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.FilterButton {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.CardsRow {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.OverviewCard {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(60, 60, 60, 0.08);
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 220px;
+  min-height: 220px;
+  transition: box-shadow 0.2s;
+}
+
+.OverviewCard:hover {
+  box-shadow: 0 4px 16px rgba(60, 60, 60, 0.16);
+}
+
+.CardLabel {
+  font-size: 1.2rem;
+  color: #222;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.CardValue {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #111;
+  text-align: center;
+}
+
+.PatientsSection {
+  margin: 2.5rem 0 0 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ShareCodeCard {
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 340px;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 4px rgba(60,60,60,0.06);
+}
+
+.ShareCode {
+  color: #3a5db0;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.ExpandBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem;
+  margin-left: 1rem;
+}
+
+.PatientsTableWrapper {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.PatientsTableWrapper h2 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.PatientsTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+.PatientsTable th, .PatientsTable td {
+  padding: 0.7rem 1rem;
+  background: #fff;
+  text-align: left;
+}
+
+.PatientsTable th {
+  font-weight: 600;
+  color: #222;
+  font-size: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.PatientsTable td {
+  font-size: 1rem;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+}
+
+.PoseStatsBtn {
+  background: #fff;
+  border: 1px solid #888;
+  border-radius: 8px;
+  padding: 0.4rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s, border 0.15s;
+}
+
+.PoseStatsBtn:hover {
+  background: #f0f4ff;
+  border-color: #3a5db0;
+}
+
+.LoadMoreWrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.LoadMoreBtn {
+  background: linear-gradient(90deg, #3a5db0 0%, #6a3ad1 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.08);
+  transition: background 0.2s;
+}
+
+.LoadMoreBtn:hover {
+  background: linear-gradient(90deg, #2d2a5a 0%, #3a5db0 100%);
+}
+
+/* Footer styles */
+.FooterPro {
+  background: #2c355a;
+  color: #f4f4f4;
+  padding: 2.5em 0 1em 0;
+  font-size: 1em;
+  margin-top: 3em;
+  flex-shrink: 0;
+}
+
+.FooterContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 3em;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 2em;
+}
+
+.FooterCol {
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+
+.FooterTitle {
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+  color: #ffe082;
+  letter-spacing: 0.5px;
+}
+
+.FooterCol a {
+  color: #f4f4f4;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 1em;
+}
+
+.FooterCol a:hover {
+  color: #ffe082;
+  text-decoration: underline;
+}
+
+.FooterSocialIcons {
+  display: flex;
+  gap: 1.5em;
+  margin-bottom: 1em;
+  margin-top: 0.3em;
+}
+
+.FooterSocialIcons img {
+  width: 48px;
+  height: 48px;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
+  object-fit: contain;
+}
+
+.FooterSocialIcons a:hover img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Make YouTube icon perfectly round and same size as others */
+.YoutubeIcon img {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff0;
+  display: block;
+}
+
+.FooterContact {
+  margin-top: 1em;
+  font-size: 0.97em;
+  color: #cfd8dc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+.FooterBottom {
+  text-align: center;
+  color: #b0b8d1;
+  font-size: 0.98em;
+  margin-top: 2em;
+  border-top: 1px solid #3a426a;
+  padding-top: 1em;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 900px) {
+  .FooterContainer { flex-direction: column; gap: 2em; padding: 0 1em; }
+  .FooterCol { min-width: 0; }
+  .DashboardContainer { max-width: 100%; }
+  .ContentNarrow { max-width: 100%; }
+  .CardsRow { flex-direction: column; align-items: flex-start; }
+  .PatientsSection { max-width: 100%; }
+}
