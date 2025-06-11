@@ -1,4 +1,3 @@
-'use client';
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import styles from './Tlogin.module.scss'; 
@@ -7,13 +6,8 @@ import Dude from '../../../public/physio_icon.png';
 import Graph from '../../../public/stocks.png';
 import Report from '../../../public/report.png';
 import Title from '../../../public/title.png';
-export default function TLogIn() {
-  const router = useRouter();
 
-  const handleLogin = () => {
-    // Add your login logic here if needed
-    router.push('/physio');
-  };
+export default function TLogIn() {
 
   return (
     <div>
@@ -25,7 +19,9 @@ export default function TLogIn() {
                 <h3>Login to access physiotherapist portal</h3>
                 <input type="text" id="username" placeholder="Enter Username" />
                 <input type="password" id="password" placeholder="Enter Password" />
-                <button className={styles.LIBtn} onClick={handleLogin}><p>Login</p></button>
+                <a href="/physio">
+                    <button className={styles.LIBtn}><p>Login</p></button>
+                </a>
             </div>
             <div className={styles.ImgBorder}>
                 <Image 
