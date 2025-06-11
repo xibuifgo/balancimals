@@ -91,7 +91,7 @@ export default function TLogIn() {
                 </div>
                 <div className={styles.Feedback}>
                     <div className={styles.Text}>
-                        “My daughter used to resist therapy, but she looks forward to the balance game every week. She's steadier and more confident now.”
+                        “My daughter used to resist therapy, but she looks forward to the balance game every week. She&apos;s steadier and more confident now.”
                     </div>
                     <div className={styles.User}>
                         <div className={styles.UserImg}></div>
@@ -103,7 +103,7 @@ export default function TLogIn() {
                 </div>
                 <div className={styles.Feedback}>
                     <div className={styles.Text}>
-                        “Balancimals helped me track my progress in real-time. It’s encouraging to see small wins each session.”
+                        “Balancimals helped me track my progress in real-time. It&apos;s encouraging to see small wins each session.”
                     </div>
                     <div className={styles.User}>
                         <div className={styles.UserImg}></div>
