@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function PhysioDashboard() {
   return (
-    <div className={styles.PageWrapper}>
+    <div>
       {/* Header Bar */}
       <div className={styles.HeaderBar}>
         <div className={styles.HeaderLeft}>

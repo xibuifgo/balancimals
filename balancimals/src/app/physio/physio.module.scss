@@ -2,22 +2,19 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: white;
 }
 
 .DashboardContainer {
   flex: 1 0 auto;
   padding: 0;
   background: #fff;
-  border-radius: 20px;
-  margin: 0 auto;
-  margin-top: 1.5rem;
-  max-width: 900px;
+  margin: 0 auto;;
   width: 100%;
 }
 
 .ContentNarrow {
   width: 100%;
-  max-width: 700px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -73,10 +70,8 @@
 .HeaderTitle {
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
   color: #111;
   text-align: left;
-  margin-top: 2rem;
 }
 
 .HeaderSubtitle {

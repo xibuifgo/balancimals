@@ -1,4 +1,3 @@
-import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import styles from './Tlogin.module.scss'; 
 import Prev from '../../../public/game_prev.png';
