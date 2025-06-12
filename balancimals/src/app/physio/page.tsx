@@ -2,6 +2,7 @@ import styles from './physio.module.scss';
 
 export default function PhysioDashboard() {
   return (
+<<<<<<< HEAD
     <div className={styles.DashboardContainer}>
       <div className={styles.CenteredContent}>
         <h1 className={styles.HeaderTitle}>Hi Dr Peters,</h1>
@@ -15,6 +16,14 @@ export default function PhysioDashboard() {
           <button className={styles.FilterButton}>
             <img src="/filter_header.png" alt="Filter" width={24} height={24} />
           </button>
+=======
+    <div>
+      {/* Header Bar */}
+      <div className={styles.HeaderBar}>
+        <div className={styles.HeaderLeft}>
+          <Image src="/bear_header.png" alt="Bear" width={48} height={48} />
+          <Image src="/balancimals_header.png" alt="Balancimals Logo" width={160} height={48} />
+>>>>>>> 3edb86c5ccf3c8061123891cbbf0e22713add098
         </div>
 
         {/* Overview Cards */}
