@@ -4,8 +4,8 @@ export default function PatientSU() {
     return(
         <div className={styles.Container}>
             <div className={styles.Box}>
-                <h1>Register</h1>
-                <input type='text' id='fname' placeholder='First Name' />
+                <h1>Sign Up</h1>
+                <input type='text' id='username' placeholder='Enter Username' />
                 <input type='password' id='password1' placeholder='Enter Password' />
                 <input type='password' id='password2' placeholder='Reenter Password' />
                 <a href='\'>

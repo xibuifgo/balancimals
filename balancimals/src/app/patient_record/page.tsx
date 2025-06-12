@@ -7,8 +7,8 @@ export default function PatientRecord() {
     <div>
       <header className={styles.header}>
         <div className={styles['header-left']}>
-          <img src="bear.png" alt="Bear Mascot" height={70} />
-          <img src="balancimals-logo.png" alt="Balancimals Logo" height={70} />
+          <img src="bear_header.png" alt="Bear Mascot" height={70} />
+          <img src="title.png" alt="Balancimals Logo" height={70} />
         </div>
         <div className={styles['header-right']}>
           <div className={styles['dr-info']}>
