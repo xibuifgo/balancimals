@@ -6,11 +6,10 @@ export default function PhysioDashboard() {
   return (
     <div>
       {/* Header Bar */}
-      <div className={styles.HeaderBar}>
-        <div className={styles.HeaderLeft}>
-          <Image src="/bear_header.png" alt="Bear" width={48} height={48} />
-          <Image src="/balancimals_header.png" alt="Balancimals Logo" width={160} height={48} />
-        </div>
+      <div className={styles.Container}>
+
+        <h1>Hi Dr. Peters,</h1>
+        <h3>Here is your patient overview.</h3>
 
         {/* Overview Cards */}
         <div className={styles.CardsRow}>
