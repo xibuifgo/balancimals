@@ -18,10 +18,10 @@ export default function PatientRecord() {
             <div><strong>Email:</strong> j.doe@gmail.com</div>
             <div><strong>Gender:</strong> Male</div>
             <div><strong>Phone:</strong> +44 6372757193</div>
-            <div><strong>Diagnosis:</strong> Balance impairment</div>
+            {/* <div><strong>Diagnosis:</strong> Balance impairment</div> */}
             <div><strong>Referring Clinician:</strong> Dr. Peters</div>
             <div><strong>Last Session:</strong> 20/1/2025</div>
-            <div><strong>Next Appointment:</strong> 27/1/2025</div>
+            {/* <div><strong>Next Appointment:</strong> 27/1/2025</div> */}
           </div>
         </div>
       </section>
@@ -202,12 +202,12 @@ export default function PatientRecord() {
             </thead>
             <tbody>
               <tr>
-                <td>Balance Test</td>
+                <td>Balance</td>
                 <td>Improved stability</td>
                 <td>85%</td>
               </tr>
               <tr>
-                <td>Reaction Game</td>
+                <td>Reaction Time</td>
                 <td>Faster response</td>
                 <td>75%</td>
               </tr>
