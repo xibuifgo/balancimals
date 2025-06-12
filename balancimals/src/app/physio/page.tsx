@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import styles from './physio.module.scss';
-import Image from "next/image"
 
 export default function PhysioDashboard() {
   return (
