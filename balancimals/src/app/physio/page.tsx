@@ -1,8 +1,8 @@
+import Link from 'next/link';
 import styles from './physio.module.scss';
 
 export default function PhysioDashboard() {
   return (
-<<<<<<< HEAD
     <div className={styles.DashboardContainer}>
       <div className={styles.CenteredContent}>
         <h1 className={styles.HeaderTitle}>Hi Dr Peters,</h1>
@@ -16,14 +16,6 @@ export default function PhysioDashboard() {
           <button className={styles.FilterButton}>
             <img src="/filter_header.png" alt="Filter" width={24} height={24} />
           </button>
-=======
-    <div>
-      {/* Header Bar */}
-      <div className={styles.HeaderBar}>
-        <div className={styles.HeaderLeft}>
-          <Image src="/bear_header.png" alt="Bear" width={48} height={48} />
-          <Image src="/balancimals_header.png" alt="Balancimals Logo" width={160} height={48} />
->>>>>>> 3edb86c5ccf3c8061123891cbbf0e22713add098
         </div>
 
         {/* Overview Cards */}
@@ -69,7 +61,11 @@ export default function PhysioDashboard() {
               </thead>
               <tbody>
                 <tr>
-                  <td>John Doe</td>
+                  <td>
+                    <Link href="/physio/patient-record" style={{ color: '#2c2154', textDecoration: 'underline', cursor: 'pointer', fontWeight: 500 }}>
+                      John Doe
+                    </Link>
+                  </td>
                   <td>7</td>
                   <td>Left Knee</td>
                   <td>22</td>
@@ -77,7 +73,11 @@ export default function PhysioDashboard() {
                   <td><button className={styles.PoseStatsBtn}>Pose Stats</button></td>
                 </tr>
                 <tr>
-                  <td>Lia Wong</td>
+                  <td>
+                    <span style={{ color: '#2c2154', textDecoration: 'underline', cursor: 'pointer', fontWeight: 500 }}>
+                      Lia Wong
+                    </span>
+                  </td>
                   <td>5</td>
                   <td>Left Knee</td>
                   <td>25</td>
@@ -85,7 +85,11 @@ export default function PhysioDashboard() {
                   <td><button className={styles.PoseStatsBtn}>Pose Stats</button></td>
                 </tr>
                 <tr>
-                  <td>Leo Ford</td>
+                  <td>
+                    <span style={{ color: '#2c2154', textDecoration: 'underline', cursor: 'pointer', fontWeight: 500 }}>
+                      Leo Ford
+                    </span>
+                  </td>
                   <td>9</td>
                   <td>Left Knee</td>
                   <td>26</td>
@@ -93,7 +97,11 @@ export default function PhysioDashboard() {
                   <td><button className={styles.PoseStatsBtn}>Pose Stats</button></td>
                 </tr>
                 <tr>
-                  <td>Anna Reid</td>
+                  <td>
+                    <span style={{ color: '#2c2154', textDecoration: 'underline', cursor: 'pointer', fontWeight: 500 }}>
+                      Anna Reid
+                    </span>
+                  </td>
                   <td>10</td>
                   <td>Left Knee</td>
                   <td>27</td>
