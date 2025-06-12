@@ -9,7 +9,7 @@ const Header = () => (
     <div className={styles['header-right']}>
       <div className={styles['dr-info']}>
         <strong>Hi, Dr Peters</strong>
-        <a href="#" className={styles['signout-btn']}>Sign Out</a>
+        <a href="\login" className={styles['signout-btn']}>Sign Out</a>
       </div>
       <img src="/doctor_header.png" alt="Dr Peters" className={styles['profile-pic']} width={80} height={80} />
       <span className={styles['settings-icon']}>
