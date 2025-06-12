@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Balancimals",
   icons: [
-    { rel: "icon", url: "/bear_header.png?v=2" },
-    { rel: "apple-touch-icon", url: "/apple-touch-icon.png" },
+    { rel: "icon", url: "/bear_header.png?v=2" }
+    // { rel: "apple-touch-icon", url: "/apple-touch-icon.png" },
   ]
 };
 
