@@ -9,7 +9,6 @@ export default function PatientRecord() {
           <div className={styles['patient-info-header']}>
             <span className={styles['patient-info-label']}>Patient details</span>
             <span className={styles['patient-info-name']}>John Doe</span>
-            <button className={styles['ehr-btn']}>Push to EHR</button>
           </div>
           <div className={styles['patient-info-grid']}>
             <div><strong>DOB:</strong> 4/6/2019</div>
@@ -71,13 +70,6 @@ export default function PatientRecord() {
             }}
           />
         </div>
-      </section>
-
-      <section className={styles['recovery-plan-pro']}>
-        <button className={styles['recovery-btn']}>
-          <span className={styles['recovery-icon']}>&#9654;</span>
-          Recovery Plan
-        </button>
       </section>
 
       <section className={styles.summary}>
