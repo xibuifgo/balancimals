@@ -7,7 +7,7 @@ CREATE TABLE "pose_score" (
 );
 
 CREATE TABLE "poses" (
-  "image_link" text NOT NULL,
+  "link" text NOT NULL,
   "name" text NOT NULL,
   "description" text NOT NULL,
   "wake_threshold" double precision,
@@ -16,13 +16,14 @@ CREATE TABLE "poses" (
 );
 
 CREATE TABLE "doctor" (
+  "id" text,
   "sharecode" text,
   "first_name" text,
   "last_name" text,
   "username" text,
   "password" text,
   "email" text,
-  PRIMARY KEY ("sharecode")
+  PRIMARY KEY ("id")
 );
 
 CREATE TABLE "patient" (

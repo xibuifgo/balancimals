@@ -1,6 +1,9 @@
 import styles from './TSU.module.scss';
+import { prisma } from '@/lib/prisma'
 
-export default function TSignUp() {
+export default async function TSignUp() {
+
+
     return(
         <div className={styles.Container}>
             <div className={styles.Box}>

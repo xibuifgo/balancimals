@@ -1,6 +1,18 @@
+import { prisma } from "@/lib/prisma"
 import styles from './patient.module.scss';
 
-export default function PatientRecord() {
+export default async function PatientRecord() {
+
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  const patient = await prisma.patient.findUnique({
+    where: {
+      id: "cmbv821gp0002zp0xu1upp9vg"
+    }
+  })
+
   return (
     <div className={styles.container}>
       <section className={styles['patient-info-pro']}>
@@ -8,16 +20,16 @@ export default function PatientRecord() {
         <div className={styles['patient-info-main']}>
           <div className={styles['patient-info-header']}>
             <span className={styles['patient-info-label']}>Patient details</span>
-            <span className={styles['patient-info-name']}>John Doe</span>
-            <button className={styles['ehr-btn']}>Push to EHR</button>
+            <span className={styles['patient-info-name']}>{patient?.fname} {patient?.lname}</span>
+            {/* <button className={styles['ehr-btn']}>Push to EHR</button> */}
           </div>
           <div className={styles['patient-info-grid']}>
-            <div><strong>DOB:</strong> 4/6/2019</div>
-            <div><strong>Patient ID:</strong> 363-8236</div>
+            <div><strong>DOB:</strong> {patient?.birthday && new Date(patient.birthday).toISOString().split('T')[0]}</div>
+            <div><strong>Patient ID:</strong> 363-8236 </div>
             <div><strong>Age:</strong> 6</div>
-            <div><strong>Email:</strong> j.doe@gmail.com</div>
-            <div><strong>Gender:</strong> Male</div>
-            <div><strong>Phone:</strong> +44 6372757193</div>
+            <div><strong>Email:</strong> { patient?.email } </div>
+            <div><strong>Gender:</strong> { capitalize(patient?.gender) }  </div>
+            <div><strong>Phone:</strong> { patient?.phone } </div>
             {/* <div><strong>Diagnosis:</strong> Balance impairment</div> */}
             <div><strong>Referring Clinician:</strong> Dr. Peters</div>
             <div><strong>Last Session:</strong> 20/1/2025</div>
@@ -73,12 +85,12 @@ export default function PatientRecord() {
         </div>
       </section>
 
-      <section className={styles['recovery-plan-pro']}>
+      {/* <section className={styles['recovery-plan-pro']}>
         <button className={styles['recovery-btn']}>
           <span className={styles['recovery-icon']}>&#9654;</span>
           Recovery Plan
         </button>
-      </section>
+      </section> */}
 
       <section className={styles.summary}>
         <div className={styles['summary-results']}>
@@ -100,16 +112,16 @@ export default function PatientRecord() {
                 <td>87%</td>
               </tr>
               <tr>
-                <td>Reaction Time (ms)</td>
-                <td>420</td>
+                {/* <td>Reaction Time (ms)</td>
+                <td>420</td> */}
               </tr>
               <tr>
                 <td>Falls or Loss of Balance</td>
                 <td>0</td>
               </tr>
               <tr>
-                <td>Session Duration</td>
-                <td>18 min</td>
+                {/* <td>Session Duration</td>
+                <td>18 min</td> */}
               </tr>
               <tr>
                 <td>Fun Rating (Self-Reported)</td>
@@ -117,7 +129,7 @@ export default function PatientRecord() {
               </tr>
             </tbody>
           </table>
-          <div style={{marginTop: '1em'}} className={styles.comm}>
+          {/* <div style={{marginTop: '1em'}} className={styles.comm}>
             <strong>Comments:</strong>
             <div style={{
               background: '#f4f7fa',
@@ -127,7 +139,7 @@ export default function PatientRecord() {
             }}>
               Great effort! Maintained balance throughout all games. Enjoyed the session and followed instructions well.
             </div>
-          </div>
+          </div> */}
           {/* <div className={styles['medical-records-table']}>
             <h2>Medical Records</h2>
             <table>
@@ -158,7 +170,7 @@ export default function PatientRecord() {
             </table>
           </div> */}
         </div>
-        <div className={styles['summary-results']}>
+        {/* <div className={styles['summary-results']}>
           <h4>Pain &amp; Discomfort Ratings</h4>
           <table>
             <thead>
@@ -186,10 +198,10 @@ export default function PatientRecord() {
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> */}
       </section>
 
-      <section className={styles.summary}>
+      {/* <section className={styles.summary}>
         <div className={styles['summary-results']}>
           <h4>Final Results</h4>
           <table>
@@ -235,7 +247,7 @@ export default function PatientRecord() {
             </tbody>
           </table>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

@@ -3,15 +3,26 @@
 
 .Banner {
     width: 100vw;
-    height: 33vh;
     flex-shrink: 0;
-    background: #38B6FF;
+    background-image: url('/home_bg.png');
+    background-size: cover;
 }
 
 .Container {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    color: #273559;
+
+    h1 {
+        font-size: 52px;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-size: 36px;
+    }
 }
 
 .Title {

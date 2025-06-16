@@ -1,0 +1,97 @@
+// schema.prisma
+
+// Define database connection via the `DATABASE_URL` env var
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Define custom output path for generated Prisma Client
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Gender {
+    male
+    female
+    non_binary
+    no_say
+}
+
+enum Difficulty {
+  easy
+  medium
+  hard
+}
+
+model Patient {
+  id            String       @default(cuid()) @id
+  fname         String    
+  lname         String    
+  height        Decimal    
+  weight        Decimal   
+  birthday      DateTime
+  difficulty    Difficulty   @default(easy)
+  email         String       @unique
+  password      String
+  sharecode     String?
+  phone         String?
+  gender        Gender       @default(male)
+
+  doctor        Doctor?      @relation(name: "DoctorToPatients", fields: [sharecode], references: [sharecode])
+  game          GameData[]
+
+  @@map(name: "patient")
+}
+
+model Doctor {
+  id            String       @default(cuid()) @id
+  fname         String       
+  lname         String    
+  username      String    
+  password      String   
+  email         String       @unique
+  sharecode     String       @unique @default(cuid())
+
+  patients      Patient[]    @relation("DoctorToPatients")
+
+  @@map(name: "doctor")
+}
+
+
+model Pose {
+  link          String    @id
+  name          String    @unique
+  desc          String    
+  wake_th       Decimal   @default(0.6) 
+  anger_th      Decimal   @default(6)
+
+  score         PoseScore[]
+
+  @@map(name: "poses")
+}
+
+model GameData {
+  id            String    @default(cuid()) @id
+  date          DateTime  @default(now())
+  poses         Json    
+  patient_id    String    
+
+  patient     Patient     @relation(fields: [patient_id], references: [id])
+  scores      PoseScore[]
+
+  @@map(name: "games")
+}
+
+model PoseScore {
+  game_id   String 
+  img_link  String
+  score     BigInt
+  DATA      Json
+
+  game      GameData   @relation(fields: [game_id], references: [id])
+  pose      Pose       @relation(fields: [img_link], references: [link])
+
+  @@id([img_link, game_id]) // Composite primary key
+  @@map(name: "posescores")
+}

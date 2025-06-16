@@ -1,45 +1,25 @@
 import Image from "next/image";
 import styles from './home.module.scss';
-import Bear from '../../public/bear.png';
+import Title from '../../public/balancimals_header.png';
 
 export default function Home() {
   return (
     <div>
       <div className={styles.Banner}>
         <div className = {styles.Container}>
-          <div className={styles.TitleDiv}>
-            <h1 className={styles.Title}>BALANCIMALS</h1>
-            <h3 className={styles.SubTitle}>Physiotherapy Made Fun!</h3>
-          </div>
           <Image 
-            src = {Bear}
-            width = {300}
-            height = {300}
+            src = {Title}
+            width = {600}
+            height = {600}
             alt = "Pixel art of a sleeping bear"
           />
+          <h1>Balance Training, <br /> made fun. </h1>
+          <h2> Where play meets progress - trusted by families and physiotherapists </h2>
         </div>
-      </div>
-      <div className={styles.Body}>
-        <div className={styles.ButtonContainer}>
-          <div className={styles.ButtonDiv}>
-            <h2 className={styles.Parent}>
-              For Parents
-            </h2>
-            <a className={styles.BtnLink}>
-              <div className = {styles.Btn}>
-                <p>Download</p>
-              </div>
-            </a>
-          </div>
-          <div className={styles.ButtonDiv}>
-            <h2 className={styles.Physio}>
-              For Physiotherapists
-            </h2>
-            <a className={styles.BtnLink} href="/login">
-              <div className = {styles.Btn}>
-                <p>Log In</p>
-              </div>
-            </a>
+        <div className={ styles.Card_Container }>
+          <div className={ styles.Card } >
+            <h2>For Parents</h2>
+            
           </div>
         </div>
       </div>
