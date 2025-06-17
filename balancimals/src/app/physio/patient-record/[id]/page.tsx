@@ -1,7 +1,14 @@
 import { prisma } from "@/lib/prisma"
 import styles from '../patient.module.scss';
 
-export default async function PatientRecord({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function Page({ params }: PageProps) {
+  const { id } = params;
 
   const patient = await prisma.patient.findUnique({
     where: { id: params.id },
