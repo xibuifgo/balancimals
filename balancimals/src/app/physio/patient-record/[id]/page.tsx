@@ -1,11 +1,7 @@
 import { prisma } from "@/lib/prisma"
 import styles from '../patient.module.scss';
 
-type Props = {
-  params: { id: string };
-};
-
-export default async function Page({ params }: Props) {
+export default async function Page({ params }: { params: { id: string } }) {
 
   const { id } = params;
 
