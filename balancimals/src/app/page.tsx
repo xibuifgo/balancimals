@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styles from './home.module.scss';
 import Title from '../../public/balancimals_header.png';
-import Controller from '../../public/game_control.png';
 
 export default function Home() {
   return (
