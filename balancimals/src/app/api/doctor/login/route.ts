@@ -1,44 +1,31 @@
-import { prisma } from '@/lib/prisma'
-import { NextResponse } from 'next/server'
-import { compare } from 'bcrypt'
-import jwt from 'jsonwebtoken';
+import { prisma } from '@/lib/prisma';
 
 export async function POST(req: Request) {
   try {
-    const { username, password } = await req.json()
+    const body = await req.json();
 
-    if (!username || !password) {
-      return NextResponse.json({ message: "Missing username or password" }, { status: 400 })
-    }
-
-    const doctor = await prisma.doctor.findUnique({ where: { username } })
+    const doctor = await prisma.doctor.findUnique({
+      where: {
+        username: body.username,
+      },
+    });
 
     if (!doctor) {
-      return NextResponse.json({ message: "User not found" }, { status: 401 })
+      return new Response(JSON.stringify({ error: 'Doctor not found' }), {
+        status: 404,
+      });
     }
 
-    const valid = await compare(password, doctor.password)
-    if (!valid) {
-      return NextResponse.json({ message: "Invalid credentials" }, { status: 401 })
-    }
+    return Response.json(doctor);
+  } catch (err: any) {
+    console.error('LOGIN API ERROR:', err);
 
-    // Generate JWT
-    const token = jwt.sign(
-      { doctorId: doctor.id },
-      process.env.JWT_SECRET!,
-      {expiresIn: '7d'}
+    return new Response(
+      JSON.stringify({ error: 'Internal Server Error', detail: err.message }),
+      {
+        status: 500,
+      }
     );
-
-    return NextResponse.json({ 
-      token, 
-      message: "Login successful", 
-      doctor: {
-        id: doctor.id,
-        username: doctor.username,
-        email: doctor.email
-    }});
-
-  } catch (error) {
-    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
   }
 }
+
