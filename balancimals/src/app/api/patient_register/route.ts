@@ -5,7 +5,15 @@ import { hash } from 'bcrypt'
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { fname, lname, email, height, weight, bday, password1, password2 } = body
+        const { fname, lname, email, phone, gender, height, weight, bday, password1, password2, sharecode } = body
+
+        console.log("[DEBUG] received body:", body);
+
+
+        if (!fname || !lname || !email || !phone || !gender || !bday || !password1 || !password2 || !sharecode ) {
+            return NextResponse.json({ message: "Missing required fields" }, { status: 401 });
+        }
+
 
         const existingUserByEmail = await prisma.patient.findUnique({
             where: { email: email }
@@ -15,7 +23,7 @@ export async function POST(req: Request) {
         }
 
         if ( password1 !== password2 ) {
-            return NextResponse.json({ patient: null, message: "Passwords do not match" }, { status: 409 })
+            return NextResponse.json({ patient: null, message: "Passwords do not match" }, { status: 410 })
         }
 
         const heightNum = parseFloat(height);
@@ -36,7 +44,10 @@ export async function POST(req: Request) {
                 weight: weightNum,
                 birthday,
                 email,
-                password: hashedPass
+                password: hashedPass,
+                sharecode,
+                phone,
+                gender
             }
         })
 

@@ -1,3 +1,8 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 import Image from "next/image";
 import styles from './Tlogin.module.scss'; 
 import Prev from '../../../public/game_prev.png';
@@ -8,20 +13,53 @@ import Title from '../../../public/title.png';
 
 export default function TLogIn() {
 
-  return (
+    const router = useRouter();
+
+    const [formData, setFormData] = useState({
+        username: '',
+        password: ''
+    })
+
+    const [message, setMessage] = useState('')
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const res = await fetch('/api/doctor/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    });
+
+    const result = await res.json();
+    setMessage(result.message);
+
+    if (res.ok) {
+        console.log('[LOGIN SUCCESS]', result.doctor);
+        // You could store the session/token in localStorage or cookies here
+        router.push('/physio'); // redirect to protected route
+        localStorage.setItem('token', result.token);
+    } else {
+        console.error(result.message);
+    }
+    };
+
+    return (
     <div>
         <div className={styles.LogIn}>
-            <div className={styles.Inputs}>
+            <form className={styles.Inputs} onSubmit={handleSubmit}>
                 <Image
                 src = {Title}
                 alt = "Balancimals written on a wooden board"/>
                 <h3>Login to access physiotherapist portal</h3>
-                <input type="text" id="username" placeholder="Enter Username" />
-                <input type="password" id="password" placeholder="Enter Password" />
-                <a href="/physio">
-                    <button className={styles.LIBtn}><p>Login</p></button>
-                </a>
-            </div>
+                <input type="text" name='username' id="username" value={formData.username} onChange={handleChange} placeholder="Enter Username" />
+                <input type="password" name='password' id="password" value={formData.password} onChange={handleChange} placeholder="Enter Password" />
+                <button type='submit' className={styles.LIBtn}><p>Login</p></button>
+            </form>
             <div className={styles.ImgBorder}>
                 <Image 
                 src = {Prev}
@@ -116,5 +154,5 @@ export default function TLogIn() {
             </div>
         </div>
     </div>
-  );
+    );
 }

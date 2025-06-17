@@ -1,22 +1,31 @@
 import { prisma } from "@/lib/prisma"
-import styles from './patient.module.scss';
+import styles from '../patient.module.scss';
 
-export default async function PatientRecord() {
-
-  function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+export default async function PatientRecord({ params }: { params: { id: string } }) {
 
   const patient = await prisma.patient.findUnique({
-    where: {
-      id: "cmbv821gp0002zp0xu1upp9vg"
+    where: { id: params.id },
+    include: {
+      doctor: true,
     }
   })
+
+  function getAgeFromBirthday(birthday: string | Date) {
+    const birth = new Date(birthday);
+    const ageDifMs = Date.now() - birth.getTime();
+    const ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  function capitalize(str: string | undefined ) {
+    if (!str) return "";
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
   return (
     <div className={styles.container}>
       <section className={styles['patient-info-pro']}>
-        <img src="/john-doe.jpg.png" alt="Patient Photo" className={styles['profile-pic-large']} />
+        {/* <img src="/john-doe.jpg.png" alt="Patient Photo" className={styles['profile-pic-large']} /> */}
         <div className={styles['patient-info-main']}>
           <div className={styles['patient-info-header']}>
             <span className={styles['patient-info-label']}>Patient details</span>
@@ -26,13 +35,13 @@ export default async function PatientRecord() {
           <div className={styles['patient-info-grid']}>
             <div><strong>DOB:</strong> {patient?.birthday && new Date(patient.birthday).toISOString().split('T')[0]}</div>
             <div><strong>Patient ID:</strong> 363-8236 </div>
-            <div><strong>Age:</strong> 6</div>
+            <div><strong>Age:</strong> {patient?.birthday ? getAgeFromBirthday(patient?.birthday): 'N/A'} </div>
             <div><strong>Email:</strong> { patient?.email } </div>
             <div><strong>Gender:</strong> { capitalize(patient?.gender) }  </div>
             <div><strong>Phone:</strong> { patient?.phone } </div>
             {/* <div><strong>Diagnosis:</strong> Balance impairment</div> */}
-            <div><strong>Referring Clinician:</strong> Dr. Peters</div>
-            <div><strong>Last Session:</strong> 20/1/2025</div>
+            <div><strong>Referring Clinician:</strong> Dr. {patient?.doctor?.lname} </div>
+            <div><strong>Last Session:</strong> 17/06/2025</div>
             {/* <div><strong>Next Appointment:</strong> 27/1/2025</div> */}
           </div>
         </div>
@@ -84,13 +93,6 @@ export default async function PatientRecord() {
           />
         </div>
       </section>
-
-      {/* <section className={styles['recovery-plan-pro']}>
-        <button className={styles['recovery-btn']}>
-          <span className={styles['recovery-icon']}>&#9654;</span>
-          Recovery Plan
-        </button>
-      </section> */}
 
       <section className={styles.summary}>
         <div className={styles['summary-results']}>

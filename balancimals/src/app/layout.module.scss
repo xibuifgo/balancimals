@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #273559;
+  background-color: white;
 
   p {
     margin: 0;
@@ -49,8 +49,129 @@
     flex-direction: row;
 }
 
-.Foot {
-    padding: 25px 0 25px 0;
-    background: #273559;
-    text-align: center;
+.header {
+  background-color: #273559;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.header-left, .header-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dr-info {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin-right: 20px;
+}
+
+.settings-icon {
+  margin-left: 18px;
+}
+
+// Layout.tsx styles
+.layoutWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f4f4f4;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+// Footer Styles
+.footer {
+  background: #2c2c54;
+  color: white;
+  text-align: left;
+  padding: 2em 0 1em 0;
+  font-size: 1em;
+  border-radius: 0 0 14px 14px;
+  width: 100%;
+}
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 3em;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0 3em;
+}
+.footer-col {
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  margin-right: 3em;
+}
+.footer-title {
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-bottom: 0.7em;
+  color: #ffe082;
+  letter-spacing: 0.5px;
+}
+.footer-col a {
+  color: #f4f4f4;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 1em;
+  margin-bottom: 0.2em;
+}
+.footer-col a:hover {
+  color: #ffe082;
+  text-decoration: underline;
+}
+.footer-social-icons {
+  display: flex;
+  gap: 1.2em;
+  margin-bottom: 1em;
+  margin-top: 0.3em;
+}
+.footer-social-icons img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.footer-social-icons a:hover img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.footer-bottom {
+  text-align: center;
+  color: #b0b8d1;
+  font-size: 0.98em;
+  margin-top: 2em;
+  border-top: 1px solid #3a426a;
+  padding-top: 1em;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 900px) {
+  .DashboardContainer { padding: 1em 0; }
+  .CenteredContent { padding: 1.2em 0.7em; }
+  .CardsRow { flex-direction: column; gap: 1em; }
+  .OverviewCard { min-width: 0; }
+  .footer-container { flex-direction: column; gap: 2em; padding: 0 1em; }
+  .footer-col { min-width: 0; margin-right: 0; }
+}
+
+@media (max-width: 600px) {
+  .DashboardContainer { padding: 0.5em 0; }
+  .CenteredContent { padding: 0.7em 0.2em; }
+  .PatientsTableWrapper { padding: 1em 0.3em; }
+  .HeaderTitle { font-size: 1.3em; }
+  .HeaderSubtitle { font-size: 1em; }
+  .footer { font-size: 0.95em; }
 }
