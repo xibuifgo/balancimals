@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "prisma db seed"
+    "seed": "prisma db seed",
+    "demo": "next build --no-lint && next start"
   },
   "dependencies": {
     "@prisma/client": "^6.9.0",

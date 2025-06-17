@@ -1,16 +1,20 @@
 import { prisma } from "@/lib/prisma"
 import styles from '../patient.module.scss';
 
-export default async function Page({ params }: { params: { id: string } }) {
+export interface PatientRecordPageProps {
+  params: {
+    id: string;
+  };
+  searchParams?: {
+    [key: string]: string | string[] | undefined;
+  };
+}
 
-  const { id } = params;
-
+export default async function Page({ params }: PatientRecordPageProps) {
   const patient = await prisma.patient.findUnique({
     where: { id: params.id },
-    include: {
-      doctor: true,
-    }
-  })
+    include: { doctor: true },
+  });
 
   function getAgeFromBirthday(birthday: string | Date) {
     const birth = new Date(birthday);
