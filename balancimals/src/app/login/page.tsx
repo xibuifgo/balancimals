@@ -58,6 +58,7 @@ export default function TLogIn() {
                 <h3>Login to access physiotherapist portal</h3>
                 <input type="text" name='username' id="username" value={formData.username} onChange={handleChange} placeholder="Enter Username" />
                 <input type="password" name='password' id="password" value={formData.password} onChange={handleChange} placeholder="Enter Password" />
+                {message && <p className={styles.Message}>{message}</p>}
                 <button type='submit' className={styles.LIBtn}><p>Login</p></button>
             </form>
             <div className={styles.ImgBorder}>

@@ -74,6 +74,7 @@ export default function PatientSU() {
                 <input type='password' name='password1' id='password1' placeholder='Enter Password' value={formData.password1} onChange={ handleChange } />
                 <input type='password' name='password2' id='password2' placeholder='Reenter Password' value={formData.password2} onChange={ handleChange } />
                 <input type='text' name='sharecode' id='sharecode' placeholder='Enter Sharecode from Physiotherapist'  value={formData.sharecode} onChange={ handleChange } />
+                {message && <p className={styles.Message}>{message}</p>}
                 <button type='submit' className={styles.Btn}><p>Register</p></button>
             </form>
         </div>

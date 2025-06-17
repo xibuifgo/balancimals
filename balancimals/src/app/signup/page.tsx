@@ -58,6 +58,7 @@ export default function TSignUp() {
                 <input type='text' name='username' id='username' value={ formData.username } placeholder='Enter Username' onChange={ handleChange }/>
                 <input type="password" name='password1' id="password1" value={ formData.password1 } placeholder="Enter Password" onChange={ handleChange } />
                 <input type="password" name='password2' id="password2" value={ formData.password2 } placeholder="Repeat Password" onChange={ handleChange } />
+                {message && <p className={styles.Message}>{message}</p>}
                 <button type='submit' className={styles.Btn}><p>Sign Up</p></button>
             </form>
         </div>
