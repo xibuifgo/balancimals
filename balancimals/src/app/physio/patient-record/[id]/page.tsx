@@ -1,5 +1,11 @@
-import { prisma } from "@/lib/prisma"
+'use client'
+
+import { prisma } from "@/lib/prisma";
+import jwt from "jsonwebtoken";
+import { NextRequest, NextResponse } from "next/server";
 import styles from '../patient.module.scss';
+import { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
 
 export interface PatientRecordPageProps {
   params: {
@@ -10,11 +16,37 @@ export interface PatientRecordPageProps {
   };
 }
 
-export default async function Page({ params }: PatientRecordPageProps) {
-  const patient = await prisma.patient.findUnique({
-    where: { id: params.id },
-    include: { doctor: true },
-  });
+export default function Page({ params }: PatientRecordPageProps) {
+
+  const { id } = useParams()
+  const [patient, setPatient] = useState(null)
+  const [loading, setLoading] = useState(true);
+  const [unauthorized, setUnauthorized] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetch(`/api/patient/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+        .then(res => {
+          if (!res.ok) throw new Error('Unauthorized');
+          return res.json();
+        })
+        .then(data => {
+          setPatient(data.patient);
+          setUnauthorized(false);
+        })
+        .catch(err => {
+          console.error(err);
+          setUnauthorized(true);
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setUnauthorized(true);
+      setLoading(false);
+    }
+  }, [id]);
 
   function getAgeFromBirthday(birthday: string | Date) {
     const birth = new Date(birthday);
@@ -27,6 +59,17 @@ export default async function Page({ params }: PatientRecordPageProps) {
     if (!str) return "";
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  if (loading) {
+    return <div style={{ padding: '2em', textAlign: 'center' }}>Loading...</div>;
+  }
+
+  if (unauthorized) {
+    return <div style={{ padding: '2em', textAlign: 'center', color: 'red' }}>
+      ❌ You are not authorized to view this page.
+    </div>;
+  }
+
 
   return (
     <div className={styles.container}>
@@ -120,16 +163,8 @@ export default async function Page({ params }: PatientRecordPageProps) {
                 <td>87%</td>
               </tr>
               <tr>
-                {/* <td>Reaction Time (ms)</td>
-                <td>420</td> */}
-              </tr>
-              <tr>
                 <td>Falls or Loss of Balance</td>
                 <td>0</td>
-              </tr>
-              <tr>
-                {/* <td>Session Duration</td>
-                <td>18 min</td> */}
               </tr>
               <tr>
                 <td>Fun Rating (Self-Reported)</td>
@@ -137,125 +172,8 @@ export default async function Page({ params }: PatientRecordPageProps) {
               </tr>
             </tbody>
           </table>
-          {/* <div style={{marginTop: '1em'}} className={styles.comm}>
-            <strong>Comments:</strong>
-            <div style={{
-              background: '#f4f7fa',
-              borderRadius: 6,
-              padding: '0.7em',
-              marginTop: '0.3em'
-            }}>
-              Great effort! Maintained balance throughout all games. Enjoyed the session and followed instructions well.
-            </div>
-          </div> */}
-          {/* <div className={styles['medical-records-table']}>
-            <h2>Medical Records</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th style={{width: '70%'}}>Record</th>
-                  <th style={{width: '30%'}}></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className={styles['record-name']}>MRI</td>
-                  <td><button className={styles['view-btn']}>View</button></td>
-                </tr>
-                <tr>
-                  <td className={styles['record-name']}>X Ray</td>
-                  <td><button className={styles['view-btn']}>View</button></td>
-                </tr>
-                <tr>
-                  <td className={styles['record-name']}>Blood Test Report</td>
-                  <td><button className={styles['view-btn']}>View</button></td>
-                </tr>
-                <tr>
-                  <td className={styles['record-name']}>Prescription</td>
-                  <td><button className={styles['view-btn']}>View</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div> */}
         </div>
-        {/* <div className={styles['summary-results']}>
-          <h4>Pain &amp; Discomfort Ratings</h4>
-          <table>
-            <thead>
-              <tr>
-                <th>Body Part</th>
-                <th>Pain (0-10)</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Knee</td>
-                <td>0</td>
-                <td>No pain reported</td>
-              </tr>
-              <tr>
-                <td>Ankle</td>
-                <td>1</td>
-                <td>Mild tiredness after session</td>
-              </tr>
-              <tr>
-                <td>Back</td>
-                <td>0</td>
-                <td>No discomfort</td>
-              </tr>
-            </tbody>
-          </table>
-        </div> */}
       </section>
-
-      {/* <section className={styles.summary}>
-        <div className={styles['summary-results']}>
-          <h4>Final Results</h4>
-          <table>
-            <thead>
-              <tr>
-                <th>Test</th>
-                <th>Performed Effect Observed</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Balance</td>
-                <td>Improved stability</td>
-                <td>85%</td>
-              </tr>
-              <tr>
-                <td>Reaction Time</td>
-                <td>Faster response</td>
-                <td>75%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className={styles['summary-results']}>
-          <h4>Pain Ratings</h4>
-          <table>
-            <thead>
-              <tr>
-                <th>Area</th>
-                <th>Rating</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Knee</td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td>Ankle</td>
-                <td>1</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section> */}
     </div>
   );
 }

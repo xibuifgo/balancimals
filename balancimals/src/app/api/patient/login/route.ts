@@ -1,49 +1,44 @@
+// app/api/doctor/login/route.ts  (or wherever your login is)
 import { prisma } from '@/lib/prisma';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
-    const { email, password } = await req.json();
+    const { username, password } = await req.json();
 
-    if (!email || !password) {
-      return NextResponse.json({ message: "Missing email or password" }, { status: 400 });
+    const doctor = await prisma.doctor.findUnique({ where: { username } });
+    if (!doctor) {
+      return NextResponse.json({ message: 'User not found' }, { status: 401 });
     }
 
-    const patient = await prisma.patient.findUnique({ where: { email } });
-
-    if (!patient) {
-      return NextResponse.json({ message: "Patient not found" }, { status: 401 });
-    }
-
-    const valid = await compare(password, patient.password);
+    const valid = await compare(password, doctor.password);
     if (!valid) {
-      return NextResponse.json({ message: "Invalid credentials" }, { status: 401 });
+      return NextResponse.json({ message: 'Invalid credentials' }, { status: 401 });
     }
 
-    if (!process.env.JWT_SECRET) {
-      throw new Error("JWT_SECRET not defined in env");
-    }
+    const token = jwt.sign(
+      {
+        doctorId: doctor.id,
+        sharecode: doctor.sharecode // ✅ Add this
+      },
+      process.env.JWT_SECRET!,
+      { expiresIn: "7d" }
+    );
 
-    const token = jwt.sign({ patientId: patient.id }, process.env.JWT_SECRET, {
-      expiresIn: '7d'
-    });
 
     return NextResponse.json({
-      message: "Login successful",
       token,
-      patient: {
-        id: patient.id,
-        fname: patient.fname,
-        lname: patient.lname,
-        email: patient.email,
-        difficulty: patient.difficulty,
-      }
+      message: 'Login successful',
+      doctor: {
+        id: doctor.id,
+        username: doctor.username,
+        email: doctor.email,
+      },
     });
-
-  } catch (error: any) {
-    console.error('PATIENT LOGIN ERROR:', error);
-    return NextResponse.json({ message: "Internal Server Error", detail: error.message }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json({ message: 'Something went wrong' }, { status: 500 });
   }
 }
+
